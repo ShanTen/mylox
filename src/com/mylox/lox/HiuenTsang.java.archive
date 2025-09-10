@@ -1,0 +1,97 @@
+package com.mylox.lox;
+
+/*
+* Visitor pattern implementation usually require a bit of foresight into a certain usage pattern wherein multiple classes exist
+*   (which may or may not be similar/instances of the same abstract class), though in my experience it seems to be quite nice to
+*    have them all under the same abstract class's namespace.
+*
+* The class HieunTsang is a simple printer implementation
+* All implementations of parser visitor classes require some sort of recursive search implementation
+* This recursive search implementation is not as obvious and is quite subtle hidden behind 2 - 3 different function calls
+* For example over here,
+*   the getStringExpression(Expr expr) function is the entryPoint to the visitor
+*       - getStringExpression(Expr expr) calls the accept method baked into the Expr class (entry method)
+*
+*       - getStringExpression(Expr expr)
+*       -> expr.accept()
+*           - expr.accept() -> visitBinaryExpr |  visitGroupingExpr | visitUnaryExpr | visitLiteralExpr
+*           - visitLiteralExpr -> returns a string
+*           - visitBinaryExpr |  visitGroupingExpr | visitUnaryExpr -> returns function call Parenthesize()
+*           - Parenthesize() -> expr.accept(this) (for each expression)
+*           - Recurses until all expressions boil down to literals (for this case)
+* Most visitor classes are bootstrapping
+*   - i.e they initiate the passing of the "strip" of class handles themselves
+*   -
+* */
+
+public class HiuenTsang implements Expr.Visitor<String>
+{
+    String getStringExpression(Expr expr){
+        return expr.accept(this);
+    }
+
+    @Override
+    public String visitBinaryExpr(Expr.Binary expr) {
+        // the attributes of Expr.Binary are available in the expr object
+        return parenthesize(expr.operator.lexeme, expr.left, expr.right);
+    }
+
+    @Override
+    public String visitGroupingExpr(Expr.Grouping expr) {
+        return parenthesize("Group", expr.expression);
+    }
+
+    private String parenthesize(String operator, Expr ...expressions) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        builder.append(STR."\{operator} ");
+        builder.append("[");
+
+        for(Expr expr : expressions){
+            builder.append(" ");
+            builder.append(expr.accept(this));
+        }
+
+        builder.append("]");
+        builder.append(")");
+        return builder.toString();
+    }
+
+    @Override
+    public String visitLiteralExpr(Expr.Literal expr) {
+        if(expr.value == null) return  "nil";
+        return expr.value.toString();
+    }
+
+    @Override
+    public String visitVariableExpr(Expr.Variable expr) {
+        return "";
+    }
+
+    @Override
+    public String visitUnaryExpr(Expr.Unary expr) {
+        return parenthesize(expr.operator.lexeme, expr.right);
+    }
+
+    public static void main(String[] args) {
+        Token PLUS = new Token(TokenType.PLUS, "+", null, 1);
+        Token MINUS = new Token(TokenType.MINUS, "-", null, 1);
+        Token MUL = new Token(TokenType.STAR, "*", null, 1);
+        Token DIV = new Token(TokenType.SLASH, "/", null, 1);
+
+
+        Expr expression = new Expr.Binary(
+                new Expr.Literal(55),
+                PLUS,
+                new Expr.Binary(
+                        new Expr.Literal("Gamer"),
+                        MINUS,
+                        new Expr.Literal(true)
+                )
+        );
+
+        System.out.println(new HiuenTsang().getStringExpression(expression));
+    }
+
+}
+

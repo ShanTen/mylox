@@ -1,0 +1,69 @@
+Progress Tracker 
+
+Scanning [done]  15 Aug
+Code Rep [done] 3AM, 16 Aug (Minor refactor left) 
+Parsing [done] 3:30 AM 17 Aug  
+Expr Eval [done] 5 PM 18 Aug  
+Statements and State [X]  8 sep 13:39 
+Control Flow []
+Functions []
+Resolving and Binding [] 
+Classes []
+Inheritance []
+
+-- Notes for later -- 
+
+If you've written lexers before do not waste your time here.
+Writing lexers is not a technical challenge, it mostly feels like a compliance, get done with the lexer and parser as soon as possible.
+
+This is challenging not only because is some of the syntax unfamiliar, but also because Im having to learn about my development environment and seting up run environments, using the debugger. 
+
+The debugger is your best friend <3
+
+I mean Im done with the code rep part, i have no clue what the f**k was implemented in the chapter, but I think looking at the generated Expr.java code will help me out. 
+
+So when i wake up tomorrow, the plan is this
+
+Spend 45 mins to an hour understanding what Expr.java and the printer actaully are, then chill, do some home work/college compliance and then get to work on the next 
+chapter which is ... Parsing! 
+
+I spent nearly 4 hours re-writing the Expression generator because I couldn't really understand what was happening the way 
+it was written.
+
+So I broke it apart and re-verse engnineered my own version of the writer which I can understand and it works! 
+
+That took a while, so we are now going to the pretty printer
+
+Pretty printer is done. The big daddy or parsing is next 
+
+Writing the parser is harder than I thought (duh) and requires a huge thought stack and still frame of mind, both of which I am lacking a little right now.
+
+I will probably write it all out (the remaining part of the chapter) 
+
+I am mentally ill - continuing parser (2:03 AM - 17 Aug) 
+Parser seems to be broken especially for ==
+Parser is also not showing the error correctly 
+
+"and" doesnt work.
+pedmas seems to wwork
+pure semicolons do not work.
+
+Parsering expressions is done.
+That was an interesting ride. 
+The Recursive descent parser was a fun ride that I am willing to hop on again. 
+Log off - 3:26 AM 17 August 
+
+Tacking statements and state now after having finished wiring together the parser earlier in the afternoon.
+
+I'm back to the point where I have no clue what the fuck is happening and need to refresh my knowledge tree! (will do that in the morning after I have finished implementing this chapter.) 
+
+I also have to fix an error that pops up with uncreognized literals, yikes.
+	- something to do with the new found inclusion of semi colons also?
+	- It'll be a fun excercise to fix myself I guess 
+
+--- Holey Moley ---
+
+Today is 10 september and I got light ah busy towards the end of August (went to blore/placement shit)
+
+I finished state management and I will probably go up till resolution and binding (not classes unfortunately...)
+

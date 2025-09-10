@@ -1,0 +1,44 @@
+Expr Class Generation:
+
+Input Data:
+ - Binary: Expr left, Token Op, Expr right 
+ - Unary: Token op, Expr right
+ - Grouping: Expr expressionToGroup
+ - Literal: Object value 
+
+Generated static class:
+
+package com.mylox.lox;
+import java.util.List;
+abstract class Expr {
+	
+	// implement visitor with a generic 
+	interface Visitor<R>{
+		R visitBinary(Assign expr);
+		 
+	}
+	
+	<R> R entry(..)
+	
+}
+
+
+static class Literal extends Expr{
+	Literal(Object value){
+		this.value = value;
+	}
+	
+	@override entryPlease(Visitor visitor){
+		return visitor.visitLiteralExpr(this);
+	}
+	
+	final Object value;
+}
+
+Parts:
+	1. package and imports 
+	2. abstract expression class 
+		- open close 
+	3. interface visitor 
+	4. abstract entry/accept point (function) 
+	5. generated static classes with entry function 
