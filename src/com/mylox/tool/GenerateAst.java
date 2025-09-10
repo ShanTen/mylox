@@ -21,6 +21,8 @@ public class GenerateAst {
         List<String> statements = Arrays.asList(
                 "Block      : List<Stmt> statements",
                 "Expression : Expr expression",
+                "If         : Expr condition, Stmt thenBranch, Stmt elseBranch",
+                "While      : Expr condition, Stmt body",
                 "Print      : Expr expression",
                 "Var        : Token name, Expr initializer"
         );
@@ -30,6 +32,7 @@ public class GenerateAst {
         List<String> expressions = Arrays.asList(
                 "Assign   : Token name, Expr value",
                 "Binary   : Expr left, Token operator, Expr right",
+                "Logical  : Expr left, Token operator, Expr right",
                 "Unary    : Token operator, Expr right",
                 "Grouping : Expr expression",
                 "Literal  : Object value",

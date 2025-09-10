@@ -133,6 +133,10 @@ public class Scanner {
                     addToken(SLASH);
                 }
                 break;
+            case '#':
+                // i love python/bash style hash comments
+                while(peek() != '\n' && !isAtEnd()) advance();
+                break;
             case ' ':
             case '\r':
             case '\t':

@@ -5,7 +5,7 @@ Code Rep [done] 3AM, 16 Aug (Minor refactor left)
 Parsing [done] 3:30 AM 17 Aug  
 Expr Eval [done] 5 PM 18 Aug  
 Statements and State [X]  8 sep 13:39 
-Control Flow []
+Control Flow [X] 10 Sep 14:15
 Functions []
 Resolving and Binding [] 
 Classes []
@@ -66,4 +66,9 @@ I also have to fix an error that pops up with uncreognized literals, yikes.
 Today is 10 september and I got light ah busy towards the end of August (went to blore/placement shit)
 
 I finished state management and I will probably go up till resolution and binding (not classes unfortunately...)
+
+10 Sep 14:15 -- Implemented if/for/while statements, it was super fun
+
+I also implemented JS style dynamic type casting because it's my goddamn language and I can do whatever I want and also implemented python style comments,
+only function implementation next!
 

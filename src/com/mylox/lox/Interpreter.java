@@ -73,10 +73,18 @@ public class Interpreter implements  Expr.Visitor<Object>,
             case PLUS:
                 if (left instanceof Double && right instanceof Double)
                     return (double) left + (double) right;
-
-                if (left instanceof String && right instanceof String)
+                else if (left instanceof String && right instanceof String)
                     return (String)left + (String) right;
-                throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings");
+
+                // too far down the JS rabbit hole...anything in the name of easier printing sob
+                else if (left instanceof String && right instanceof Number)
+                    return (String)left + Double.toString((double) right);
+                else if (right instanceof String && left instanceof Number)
+                    return Double.toString((double) left) + (String) right;
+
+
+                throw new RuntimeError(expr.operator, "Cannot implicitly convert between those two types, strings and numbers are fine.");
+
             case GREATER:
                 checkNumberOperands(expr.operator, left, right);
                 return (double)left > (double)right;
@@ -94,6 +102,22 @@ public class Interpreter implements  Expr.Visitor<Object>,
         }
 
         return null;
+    }
+
+    @Override
+    public Object visitLogicalExpr(Expr.Logical expr) {
+        Object left = evaluate(expr.left);
+
+        if (expr.operator.type == TokenType.OR) {
+            if (isTruthy(left))
+                return left;
+        } else {
+            // and condition
+            if (!isTruthy(left))
+                return left; //returning the object here because down the line, our truthy function will take care of evaluating the returned object's binary assumption
+        }
+
+        return evaluate(expr.right);
     }
 
     private boolean isEqual(Object left, Object right) {
@@ -175,6 +199,24 @@ public class Interpreter implements  Expr.Visitor<Object>,
     @Override
     public Void visitExpressionStmt(Stmt.Expression stmt) {
         evaluate(stmt.expression);
+        return null;
+    }
+
+    @Override
+    public Void visitIfStmt(Stmt.If stmt) {
+        if(isTruthy(stmt.condition)){
+            execute(stmt.thenBranch);
+        } else if(stmt.elseBranch != null){
+            execute(stmt.elseBranch);
+        }
+        return null;
+    }
+
+    @Override
+    public Void visitWhileStmt(Stmt.While stmt) {
+        while(isTruthy(evaluate(stmt.condition))){
+            execute(stmt.body);
+        }
         return null;
     }
 

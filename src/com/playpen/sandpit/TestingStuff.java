@@ -21,8 +21,8 @@ public class TestingStuff {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Running the sandbox!");
-        PrintWriter zamnWriter = new PrintWriter(fout);
-        cringe(zamnWriter);
+//        PrintWriter zamnWriter = new PrintWriter(fout);
+//        cringe(zamnWriter);
     }
 
     // "Binary   : Expr left, Token operator, Expr right" => ["Binary", "Expr left", "Token operator", "Expr right"]

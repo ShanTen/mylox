@@ -47,17 +47,16 @@ public class Lox {
     }
 
     private static void run(String line) {
+        Scanner scanner = new Scanner(line);
+        List<Token> tokens = scanner.tokenize();
 
-    Scanner scanner = new Scanner(line);
-    List<Token> tokens = scanner.tokenize();
+        Parser parser = new Parser(tokens);
+        List<Stmt> statements = parser.parse();
 
-    Parser parser = new Parser(tokens);
-    List<Stmt> statements = parser.parse();
+        // Stop if there was a syntax error.
+        if (hadError) return;
 
-    // Stop if there was a syntax error.
-    if (hadError) return;
-
-    interpreter.interpret(statements);
+        interpreter.interpret(statements);
     }
 
     static void error(int line, String message) {
