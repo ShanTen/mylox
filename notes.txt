@@ -20,7 +20,7 @@ This is challenging not only because is some of the syntax unfamiliar, but also 
 
 The debugger is your best friend <3
 
-I mean Im done with the code rep part, i have no clue what the f**k was implemented in the chapter, but I think looking at the generated Expr.java code will help me out. 
+I mean Im done with the code rep part, i have no clue what was implemented in the chapter, but I think looking at the generated Expr.java code will help me out. 
 
 So when i wake up tomorrow, the plan is this
 
@@ -55,7 +55,7 @@ Log off - 3:26 AM 17 August
 
 Tacking statements and state now after having finished wiring together the parser earlier in the afternoon.
 
-I'm back to the point where I have no clue what the fuck is happening and need to refresh my knowledge tree! (will do that in the morning after I have finished implementing this chapter.) 
+I'm back to the point where I have no clue what is happening and need to refresh my knowledge tree! (will do that in the morning after I have finished implementing this chapter.) 
 
 I also have to fix an error that pops up with uncreognized literals, yikes.
 	- something to do with the new found inclusion of semi colons also?
@@ -63,7 +63,7 @@ I also have to fix an error that pops up with uncreognized literals, yikes.
 
 --- Holey Moley ---
 
-Today is 10 september and I got light ah busy towards the end of August (went to blore/placement shit)
+Today is 10 september and I got light ah busy towards the end of August (went to blore/placement stuff)
 
 I finished state management and I will probably go up till resolution and binding (not classes unfortunately...)
 
